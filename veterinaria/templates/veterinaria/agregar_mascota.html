@@ -1,0 +1,15 @@
+{% extends "veterinaria/base.html" %}
+
+{% block title %}Agregar Mascota{% endblock %}
+
+{% block content %}
+<h1>Agregar Nueva Mascota</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Mascota</button>
+</form>
+
+<a href="{% url 'inicio' %}">Volver al inicio</a>
+{% endblock %}

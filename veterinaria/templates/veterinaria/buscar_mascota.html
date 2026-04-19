@@ -1,0 +1,38 @@
+{% extends "veterinaria/base.html" %}
+
+{% block title %}Buscar Mascota{% endblock %}
+
+{% block content %}
+<h1>Buscar Mascota</h1>
+
+<form method="GET">
+    {{ form.as_p }}
+    <button type="submit">Buscar</button>
+</form>
+
+{% if resultados %}
+    <h2>Resultados:</h2>
+    <ul>
+        {% for mascota in resultados %}
+            <li>
+                <strong>{{ mascota.nombre }}</strong> - {{ mascota.especie }} - Edad: {{ mascota.edad }} años<br>
+                Dueño: {{ mascota.dueno.nombre }}<br>
+                {% if mascota.consultas.all %}
+                    <strong>Consultas:</strong>
+                    <ul>
+                        {% for consulta in mascota.consultas.all %}
+                            <li>{{ consulta.fecha }}: {{ consulta.motivo }} - {{ consulta.diagnostico }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <em>Sin consultas registradas</em>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% elif request.GET %}
+    <p>No se encontraron mascotas con ese nombre.</p>
+{% endif %}
+
+<a href="{% url 'inicio' %}">Volver al inicio</a>
+{% endblock %}

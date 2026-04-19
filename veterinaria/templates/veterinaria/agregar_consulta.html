@@ -1,0 +1,15 @@
+{% extends "veterinaria/base.html" %}
+
+{% block title %}Agregar Consulta{% endblock %}
+
+{% block content %}
+<h1>Agregar Nueva Consulta</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Consulta</button>
+</form>
+
+<a href="{% url 'inicio' %}">Volver al inicio</a>
+{% endblock %}
