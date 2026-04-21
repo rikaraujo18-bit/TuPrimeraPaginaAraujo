@@ -1,7 +1,7 @@
 # Veterinaria - TuPrimeraPaginaAraujo
 
 ## Descripción
-Web para gestión de una veterinaria. Permite registrar clientes, mascotas y consultas, y buscar mascotas por nombre.
+Web para gestin de una veterinaria. Permite registrar clientes, mascotas y consultas, y buscar mascotas por nombre.
 
 ## Requisitos
 - Python 3.x
