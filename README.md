@@ -1,7 +1,23 @@
+## Entrega parcial - TP4
+
+### Funcionalidades implementadas:
+- Login, logout, registro de usuarios
+- Perfil de usuario (editable)
+- CRUD completo de mascotas (Crear, Leer, Actualizar, Eliminar)
+- Listado y detalle de mascotas
+- Panel de administración
+
+### Proximo (entrega final):
+- Subida de imágenes (avatar y foto de mascota)
+- Página "Acerca de"
+- Vistas basadas en clases (CBV)
+- Tengo que armr el video.
+
+
 # Veterinaria - TuPrimeraPaginaAraujo
 
 ## Descripción
-Web para gestión de una veterinaria. Permite registrar clientes, mascotas y consultas, y buscar mascotas por nombre.
+Web para gestón de una veterinaria. Permite registrar clientes, mascotas y consultas, y buscar mascotas por nombre.
 
 ## Requisitos
 - Python 3.x

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Cliente, Mascota, Consulta
 from .forms import ClienteForm, MascotaForm, ConsultaForm, BuscarMascotaForm
 
@@ -47,3 +47,33 @@ def buscar_mascota(request):
         'form': form,
         'resultados': resultados
     })
+
+# NUEVAS FUNCIONES PARA EL TP4:
+
+def listado_mascotas(request):
+    mascotas = Mascota.objects.all()
+    return render(request, 'veterinaria/listado_mascotas.html', {'mascotas': mascotas})
+
+def detalle_mascota(request, mascota_id):
+    mascota = get_object_or_404(Mascota, id=mascota_id)
+    return render(request, 'veterinaria/detalle_mascota.html', {'mascota': mascota})
+
+def editar_mascota(request, mascota_id):
+    mascota = get_object_or_404(Mascota, id=mascota_id)
+    
+    if request.method == 'POST':
+        form = MascotaForm(request.POST, request.FILES, instance=mascota)
+        if form.is_valid():
+            form.save()
+            return redirect('detalle_mascota', mascota_id=mascota.id)
+    else:
+        form = MascotaForm(instance=mascota)
+    
+    return render(request, 'veterinaria/editar_mascota.html', {'form': form, 'mascota': mascota})
+
+def eliminar_mascota(request, mascota_id):
+    mascota = get_object_or_404(Mascota, id=mascota_id)
+    if request.method == 'POST':
+        mascota.delete()
+        return redirect('listado_mascotas')
+    return render(request, 'veterinaria/eliminar_mascota.html', {'mascota': mascota})

@@ -1,0 +1,16 @@
+
+{% extends "veterinaria/base.html" %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+<h1>Iniciar Sesión</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Ingresar</button>
+</form>
+
+<p>¿No tenés cuenta? <a href="{% url 'signup' %}">Registrate acá</a></p>
+{% endblock %}

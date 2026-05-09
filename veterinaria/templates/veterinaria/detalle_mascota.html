@@ -1,0 +1,25 @@
+{% extends "veterinaria/base.html" %}
+
+{% block title %}Detalle de {{ mascota.nombre }}{% endblock %}
+
+{% block content %}
+<h1>{{ mascota.nombre }}</h1>
+
+<p><strong>Especie:</strong> {{ mascota.get_especie_display }}</p>
+<p><strong>Edad:</strong> {{ mascota.edad }} años</p>
+<p><strong>Dueño:</strong> {{ mascota.dueno.nombre }}</p>
+<p><strong>Número de chip:</strong> {{ mascota.numero_chip|default:"No registrado" }}</p>
+<p><strong>Fecha de registro:</strong> {{ mascota.fecha_registro }}</p>
+
+{% if mascota.imagen %}
+    <p><strong>Foto:</strong></p>
+    <img src="{{ mascota.imagen.url }}" alt="{{ mascota.nombre }}" style="max-width: 300px;">
+{% endif %}
+
+<p>
+    <a href="{% url 'editar_mascota' mascota.id %}">Editar mascota</a> |
+    <a href="{% url 'eliminar_mascota' mascota.id %}">Eliminar mascota</a> |
+    <a href="{% url 'listado_mascotas' %}">Volver al listado</a> |
+    <a href="{% url 'inicio' %}">Inicio</a>
+</p>
+{% endblock %}

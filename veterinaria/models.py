@@ -21,6 +21,9 @@ class Mascota(models.Model):
     especie = models.CharField(max_length=20, choices=ESPECIES)
     edad = models.IntegerField()
     dueno = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='mascotas')
+    imagen = models.ImageField(upload_to='mascotas/', null=True, blank=True)
+    fecha_registro = models.DateField(auto_now_add=True)
+    numero_chip = models.IntegerField(unique=True, null=True, blank=True)
     
     def __str__(self):
         return f"{self.nombre} ({self.dueno.nombre})"

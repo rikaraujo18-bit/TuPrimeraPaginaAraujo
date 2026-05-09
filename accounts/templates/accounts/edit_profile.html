@@ -1,0 +1,21 @@
+{% extends "veterinaria/base.html" %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+<h1>Editar Perfil</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <h3>Datos personales</h3>
+    {{ user_form.as_p }}
+    
+    <h3>Información adicional</h3>
+    {{ perfil_form.as_p }}
+    
+    <button type="submit">Guardar cambios</button>
+</form>
+
+<a href="{% url 'profile' %}">Volver al perfil</a>
+{% endblock %}
