@@ -1,32 +1,30 @@
-## Entrega parcial - TP4
-
-### Funcionalidades implementadas:
-- Login, logout, registro de usuarios
-- Perfil de usuario (editable)
-- CRUD completo de mascotas (Crear, Leer, Actualizar, Eliminar)
-- Listado y detalle de mascotas
-- Panel de administración
-
-### Proximo (entrega final):
-- Subida de imágenes (avatar y foto de mascota)
-- Página "Acerca de"
-- Vistas basadas en clases (CBV)
-- Tengo que armr el video.
-
-
-# Veterinaria - TuPrimeraPaginaAraujo
+# TuPrimeraPaginaAraujo - Veterinaria ENTREGA FINAL - RICARDO ARAUJO
 
 ## Descripción
-Web para gestón de una veterinaria. Permite registrar clientes, mascotas y consultas, y buscar mascotas por nombre
+Proyecto final del curso Python/Django.
 
-## Requisitos
-- Python 3.x
-- Django 6.0.4
+Web para gestión de una veterinaria. Permite registrar clientes, mascotas y consultas, con sistema de autenticación, perfiles de usuario y CRUD completo de mascotas (incluye imágenes).
 
-## Instalación
+## Funcionalidades principales
+- Registro, login y logout de usuarios.
+- Perfil de usuario editable (nombre, apellido, email, avatar, biografía).
+- Cambio de contraseña.
+- CRUD completo de **Mascotas** (Crear, Leer, Actualizar, Eliminar).
+- Cada mascota tiene: nombre, especie, edad, dueño, número de chip (único), fecha de registro e imagen.
+- Listado de mascotas con enlace a detalle.
+- Página "Acerca de" con MÍA.
+- Panel de administración de Django con todos los modelos registrados.
+- Buscador de mascotas por nombre.
+- Gestión de clientes y consultas.
 
-1. Clonar el repositorio
-2. Crear y activar entorno virtual:
+## Requisitos técnicos
+- Python 3.14
+- Django 6.0.5
+- Pillow (para manejo de imágenes)
+
+## Instalacin y ejecución
+
+1. Clonar el repositorio:
    ```bash
-   python -m venv venv
-   venv\Scripts\activate
+   git clone https://github.com/rikaraujo18-bit/TuPrimeraPaginaAraujo.git
+   cd TuPrimeraPaginaAraujo
