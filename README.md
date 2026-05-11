@@ -27,4 +27,5 @@ Web para gestión de una veterinaria. Permite registrar clientes, mascotas y con
 1. Clonar el repositorio:
    ```bash
    git clone https://github.com/rikaraujo18-bit/TuPrimeraPaginaAraujo.git
+   Link video explicativo: https://youtu.be/YTC8OYqvrTw
    cd TuPrimeraPaginaAraujo
