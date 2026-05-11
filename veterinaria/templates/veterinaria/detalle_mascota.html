@@ -14,6 +14,8 @@
 {% if mascota.imagen %}
     <p><strong>Foto:</strong></p>
     <img src="{{ mascota.imagen.url }}" alt="{{ mascota.nombre }}" style="max-width: 300px;">
+{% else %}
+    <p>Esta mascota no tiene foto aún.</p>
 {% endif %}
 
 <p>

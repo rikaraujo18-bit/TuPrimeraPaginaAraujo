@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Cliente, Mascota, Consulta
 from .forms import ClienteForm, MascotaForm, ConsultaForm, BuscarMascotaForm
+
+# ====================== VISTAS BASADAS EN FUNCIONES (FBV) ======================
 
 def inicio(request):
     return render(request, 'veterinaria/inicio.html')
@@ -17,7 +21,7 @@ def agregar_cliente(request):
 
 def agregar_mascota(request):
     if request.method == 'POST':
-        form = MascotaForm(request.POST)
+        form = MascotaForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('inicio')
@@ -48,16 +52,6 @@ def buscar_mascota(request):
         'resultados': resultados
     })
 
-# NUEVAS FUNCIONES PARA EL TP4:
-
-def listado_mascotas(request):
-    mascotas = Mascota.objects.all()
-    return render(request, 'veterinaria/listado_mascotas.html', {'mascotas': mascotas})
-
-def detalle_mascota(request, mascota_id):
-    mascota = get_object_or_404(Mascota, id=mascota_id)
-    return render(request, 'veterinaria/detalle_mascota.html', {'mascota': mascota})
-
 def editar_mascota(request, mascota_id):
     mascota = get_object_or_404(Mascota, id=mascota_id)
     
@@ -65,7 +59,8 @@ def editar_mascota(request, mascota_id):
         form = MascotaForm(request.POST, request.FILES, instance=mascota)
         if form.is_valid():
             form.save()
-            return redirect('detalle_mascota', mascota_id=mascota.id)
+            # CORREGIDO: cambio 'mascota_id' por 'pk' porque la CBV espera pk
+            return redirect('detalle_mascota', pk=mascota.id)
     else:
         form = MascotaForm(instance=mascota)
     
@@ -77,3 +72,18 @@ def eliminar_mascota(request, mascota_id):
         mascota.delete()
         return redirect('listado_mascotas')
     return render(request, 'veterinaria/eliminar_mascota.html', {'mascota': mascota})
+
+def about(request):
+    return render(request, 'veterinaria/about.html')
+
+# ====================== VISTAS BASADAS EN CLASES (CBV) ======================
+
+class ListadoMascotasView(LoginRequiredMixin, ListView):
+    model = Mascota
+    template_name = 'veterinaria/listado_mascotas.html'
+    context_object_name = 'mascotas'
+
+class DetalleMascotaView(LoginRequiredMixin, DetailView):
+    model = Mascota
+    template_name = 'veterinaria/detalle_mascota.html'
+    context_object_name = 'mascota'

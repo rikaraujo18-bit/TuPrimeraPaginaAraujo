@@ -1,12 +1,26 @@
 {% extends "veterinaria/base.html" %}
 
-{% block title %}Perfil{% endblock %}
+{% block title %}Mi Perfil{% endblock %}
 
 {% block content %}
 <h1>Mi Perfil</h1>
+
 <p><strong>Usuario:</strong> {{ user.username }}</p>
+<p><strong>Nombre:</strong> {{ user.first_name }}</p>
+<p><strong>Apellido:</strong> {{ user.last_name }}</p>
 <p><strong>Email:</strong> {{ user.email }}</p>
 
+<h3>Biografía</h3>
+<p>{{ user.perfil.biografia|default:"Sin biografía aún" }}</p>
+
+<h3>Avatar</h3>
+{% if user.perfil.avatar %}
+    <img src="{{ user.perfil.avatar.url }}" alt="Avatar" style="max-width: 150px; border-radius: 50%;">
+{% else %}
+    <p>Sin avatar</p>
+{% endif %}
+
+<br><br>
 <a href="{% url 'edit_profile' %}">Editar perfil</a> |
 <a href="{% url 'change_password' %}">Cambiar contraseña</a> |
 <a href="{% url 'logout' %}">Cerrar sesión</a>

@@ -9,7 +9,7 @@ class ClienteForm(forms.ModelForm):
 class MascotaForm(forms.ModelForm):
     class Meta:
         model = Mascota
-        fields = ['nombre', 'especie', 'edad', 'dueno']
+        fields =  ['nombre', 'especie', 'edad', 'dueno', 'numero_chip', 'imagen']
 
 class ConsultaForm(forms.ModelForm):
     class Meta:
